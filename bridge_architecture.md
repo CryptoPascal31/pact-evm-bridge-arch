@@ -165,10 +165,10 @@ The system looks like many other centralized bridges. The same model of signing 
 
 But this model has been improved by using a distributed model with many approvers. It has the following advantages:
  * High availability: no single point of failure. This can be improved if some **Approvers** embed their own node and/or use different RPC/endpoints
- * Better security. If a approver is being hacked and its keys disclosed, this is not sufficient to steal money, because **Owner** define a minimum signature count.
+ * Better security. If a approver is being hacked and its keys disclosed, this is not sufficient to steal money, because **Owner** defines a minimum signature count.
 
 
- Moreover, by using Kadena, and the features of Pact, **User** never communicate directly with the **Approvers**. This has the following advantages:
+ Moreover, by using Kadena, and the features of Pact, **User** never communicates directly with the **Approvers**. This has the following advantages:
    * No direct threat of being exploited using a Web or RPC exploit.
    * The **Approvers** locations and IPs are unknown. They can be spread around the world and hosted by different ISPs.
    * The bridge doesn't depend on a specific Front-end => Can still be used only by transacting with the Blockchains.
