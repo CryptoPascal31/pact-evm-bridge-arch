@@ -154,11 +154,11 @@ On the Kadena side deposits and withdrawals flows are completely independent
 * The `K_Withdraw_n` key has no utility for security. Its sole purpose is to prevent random people for spamming the contract.
 
 
-### System Drawbacks
+## System Drawbacks
 
 From a trust perspective, the bridge is definitively **centralized**. **Owner** has full control of the assets, and is responsible of keeping its administrative keys highly secured.
 
-### System Advantages
+## System Advantages
 
 The system looks like many other centralized bridges. The same model of signing approvals by a central entity and using the EVM function `ecrecovery` has been used many times and is well proven.
 
