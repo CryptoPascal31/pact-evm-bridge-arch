@@ -116,16 +116,6 @@ On the Kadena side deposits and withdrawals flows are completely independent
   * A transaction to the EVM contract to grant `K_Withdraw_Recover_n`
 
 
-5. **User** sends a `(Claim EthTxId Amount Account)`. The contract:
-    * Verifies that enough approvers have approve the transaction.
-    * Checks that Hash(Account) == Account_Hash
-    * Mints the wrapped tokens
-    * Sends the fee to the *Fee Collector* account
-    * Sends the token to *Account*
-
-
-
-
 ### Withdrawal
 
 ![Withdrawal](img/bridge_withdraw.png)
