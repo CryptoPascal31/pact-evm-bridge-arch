@@ -156,19 +156,22 @@ On the Kadena side deposits and withdrawals flows are completely independent
 
 ## System Drawbacks
 
-From a trust perspective, the bridge is definitively **centralized**. **Owner** has full control of the assets, and is responsible of keeping its administrative keys highly secured.
+1. From a trust perspective, the bridge is definitively **centralized**. **Owner** has full control of the assets, and is responsible of keeping its administrative keys highly secured.
 
 ## System Advantages
 
-The system looks like many other centralized bridges. The same model of signing approvals by a central entity and using the EVM function `ecrecovery` has been used many times and is well proven.
+1. The system looks like many other centralized bridges. The same model of signing approvals by a central entity and using the EVM function `ecrecovery` has been used many times and is well proven.
 
 
-But this model has been improved by using a distributed model with many approvers. It has the following advantages:
+2. But this model has been improved by using a distributed model with many approvers. It has the following advantages:
  * High availability: no single point of failure. This can be improved if some **Approvers** embed their own node and/or use different RPC/endpoints
  * Better security. If a approver is being hacked and its keys disclosed, this is not sufficient to steal money, because **Owner** defines a minimum signature count.
 
 
- Moreover, by using Kadena, and the features of Pact, **User** never communicates directly with the **Approvers**. This has the following advantages:
+ 3. Moreover, by using Kadena, and the features of Pact, **User** never communicates directly with the **Approvers**. This has the following advantages:
    * No direct threat of being exploited using a Web or RPC exploit.
    * The **Approvers** locations and IPs are unknown. They can be spread around the world and hosted by different ISPs.
    * The bridge doesn't depend on a specific Front-end => Can still be used only by transacting with the Blockchains.
+
+
+4. As designed, the system is divided in simple functions. Deposits and Withdrawals functions are isolated. Simplicity => Security   
