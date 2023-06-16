@@ -77,27 +77,27 @@ On the Kadena side deposits and withdrawals flows are completely independent
 
 
 1. **User** sends a `Deposit(Amount, Account_Hash)` transaction to the EVM contract.
- * Account_Hash is the Blake2 of the Kadena account
+   * Account_Hash is the Blake2 of the Kadena account
 
 
 2. During the execution of the contract(on EVM):
-  * Funds are being transferred to the contract address
-  * An EVM chain event is generated
+   * Funds are being transferred to the contract address
+   * An EVM chain event is generated
 
 
 3. Each approver sees the event and sends an `(Approve EthTxId Amount Account_Hash)` transaction to the Pact deposit contract. The deposit contract store each approval.
-   * Transaction signed with it's `K_Deposit_n`
+    * Transaction signed with it's `K_Deposit_n`
 
 
 4. **User** monitors the on-chain data until the required number (specified by **Owner**) of approvals has been reached.
 
 
 5. **User** send a `(Claim EthTxId Amount Account)`. The contract:
-  * Verifies that enough approvers have approve the transaction.
-  * Checks that Hash(Account) == Account_Hash
-  * Mints the wrapped tokens
-  * Sends the fee to the *Fee Collector* account
-  * Sends the token to *Account*
+   * Verifies that enough approvers have approve the transaction.
+   * Checks that Hash(Account) == Account_Hash
+   * Mints the wrapped tokens
+   * Sends the fee to the *Fee Collector* account
+   * Sends the token to *Account*
 
 ## Withdrawal flow
 
@@ -112,8 +112,8 @@ On the Kadena side deposits and withdrawals flows are completely independent
 
 
 3. For each approver, **Owner** sends:
-  * A transaction to the Pact Withdrawal Contract to grant `K_Withdraw_n`
-  * A transaction to the EVM contract to grant `K_Withdraw_Recover_n`
+   * A transaction to the Pact Withdrawal Contract to grant `K_Withdraw_n`
+   * A transaction to the EVM contract to grant `K_Withdraw_Recover_n`
 
 
 ### Withdrawal
@@ -121,14 +121,14 @@ On the Kadena side deposits and withdrawals flows are completely independent
 ![Withdrawal](img/bridge_withdraw.png)
 
 1. **User** sends a `(Burn Amount EVM_Address)` transaction to the Pact Withdrawal Contract. The contract:
-  * Sends the fee to the *Fee Collector* account
-  * Burn the wrapped tokens.
-  * Generates a Kadena chain event
+   * Sends the fee to the *Fee Collector* account
+   * Burn the wrapped tokens.
+   * Generates a Kadena chain event
 
 
 2. Each approver sees the event and:
-  * Generates a signature: `Signature = ECC(KadenaTxId Amount EVM_Address)` with `K_Withdraw_Recover_n`. EIP-712 or something similar can be used.
-  * Send a transaction `(Submit KadenaTxId Signature)` to the Pact Withdrawal Contract. Transaction signed with `K_Withdraw_n`. The contract record the signature
+   * Generates a signature: `Signature = ECC(KadenaTxId Amount EVM_Address)` with `K_Withdraw_Recover_n`. EIP-712 or something similar can be used.
+   * Send a transaction `(Submit KadenaTxId Signature)` to the Pact Withdrawal Contract. Transaction signed with `K_Withdraw_n`. The contract record the signature
 
 
 3. **User** monitors the on-chain data until the required number (specified by **Owner**) of approvals has been reached, and gather all the signatures.
@@ -154,11 +154,11 @@ On the Kadena side deposits and withdrawals flows are completely independent
 
 
 2. But this model has been improved by using a distributed model with many approvers. It has the following advantages:
- * High availability: no single point of failure. This can be improved if some **Approvers** embed their own node and/or use different RPC/endpoints
- * Better security. If a approver is being hacked and its keys disclosed, this is not sufficient to steal money, because **Owner** defines a minimum signature count.
+   * High availability: no single point of failure. This can be improved if some **Approvers** embed their own node and/or use different RPC/endpoints
+   * Better security. If a approver is being hacked and its keys disclosed, this is not sufficient to steal money, because **Owner** defines a minimum signature count.
 
 
- 3. Moreover, by using Kadena, and the features of Pact, **User** never communicates directly with the **Approvers**. This has the following advantages:
+3. Moreover, by using Kadena, and the features of Pact, **User** never communicates directly with the **Approvers**. This has the following advantages:
    * No direct threat of being exploited using a Web or RPC exploit.
    * The **Approvers** locations and IPs are unknown. They can be spread around the world and hosted by different ISPs.
    * The bridge doesn't depend on a specific Front-end => Can still be used only by transacting with the Blockchains.
